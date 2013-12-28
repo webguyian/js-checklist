@@ -102,6 +102,16 @@ input[type='checkbox']:checked:after {
 	color: #5db24e;
 	text-align: center;
 }
+.notification {
+	position: absolute;
+	left: 25%;
+	width: 20em;
+	margin: 0 auto;
+	padding: 0.5em;
+	background: rgba(255, 100, 91, 0.85);
+	color: #f1f1f1;
+	border-radius: 4px;
+}
 .hidden {
 	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
 	filter: alpha(opacity=0);

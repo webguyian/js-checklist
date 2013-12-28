@@ -20,7 +20,7 @@ var fade = function() {
 		tween: function(){
 			if(this.alpha == this.target) {
 				clearInterval(this.elem.si);
-				this.elem.removeAttribute('class');
+				//this.elem.removeAttribute('class');
 			} else {
 				var value = Math.round(this.alpha + ((this.target - this.alpha) * .10)) + (1 * this.flag);
 				this.elem.style.opacity = value / 100;
@@ -56,12 +56,17 @@ function markDone() {
 }
 
 function clearTodos() {
-	var listElements = list.getElementsByClassName('completed');
+	var listElements = list.getElementsByClassName('completed'),
+			notification = doc.querySelector('.notification'),
+			fadeOut = function(){fade.init(notification)};
+
+	notification.innerHTML = 'You need to complete your TODOs first.';
 
 	if (listElements[0]) {
 		listElements[0].parentNode.removeChild(listElements[0]);
 	} else {
-		alert('Mark your to-dos as done first.');
+		fade.init(notification, 1);
+		window.setTimeout(fadeOut, 2000);
 	}
 
 }
