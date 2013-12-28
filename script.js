@@ -33,13 +33,14 @@ var fade = function() {
 
 function addTodo() {
 	var li = doc.createElement('li'),
-		checkbox = doc.createElement('input');
+		checkbox = doc.createElement('input'),
+		inputVal = doc.createTextNode(input.value);
 	checkbox.setAttribute('type', 'checkbox');
 	checkbox.className = 'close';
 	checkbox.addEventListener('click', markDone, false);
-	li.innerHTML = input.value;
 	li.className = 'hidden';
 	li.appendChild(checkbox);
+	li.appendChild(inputVal);
 	list.appendChild(li);
 	fade.init(li, 1);
 	input.value = '';
@@ -57,9 +58,12 @@ function markDone() {
 function clearTodos() {
 	var listElements = list.getElementsByClassName('completed');
 
-	while (listElements[0]) {
+	if (listElements[0]) {
 		listElements[0].parentNode.removeChild(listElements[0]);
+	} else {
+		alert('Mark your to-dos as done first.');
 	}
+
 }
 
 input.addEventListener('keypress', function(e){
