@@ -63,7 +63,9 @@ function clearTodos() {
 	notification.innerHTML = 'You need to complete your TODOs first.';
 
 	if (listElements[0]) {
-		listElements[0].parentNode.removeChild(listElements[0]);
+		while (listElements.length) {
+			listElements[0].parentNode.removeChild(listElements[0]);
+		}
 	} else {
 		fade.init(notification, 1);
 		window.setTimeout(fadeOut, 2000);
