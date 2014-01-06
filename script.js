@@ -15,20 +15,20 @@ var fade = function() {
 			this.target = target ? target : flag ? 100 : 0;
 			this.flag = flag || -1;
 			this.alpha = this.elem.style.opacity ? parseFloat(this.elem.style.opacity) * 100 : 0;
-			this.elem.si = setInterval(function(){fade.tween()}, 20);
+			this.elem.si = setInterval(function(){fade.tween();}, 20);
 		},
 		tween: function(){
 			if(this.alpha == this.target) {
 				clearInterval(this.elem.si);
 				//this.elem.removeAttribute('class');
 			} else {
-				var value = Math.round(this.alpha + ((this.target - this.alpha) * .10)) + (1 * this.flag);
+				var value = Math.round(this.alpha + ((this.target - this.alpha) * 0.10)) + (1 * this.flag);
 				this.elem.style.opacity = value / 100;
 				this.elem.style.filter = 'alpha(opacity=' + value + ')';
 				this.alpha = value;
 			}
 		}
-	}
+	};
 }();
 
 function addTodo() {
@@ -58,7 +58,7 @@ function markDone() {
 function clearTodos() {
 	var listElements = list.getElementsByClassName('completed'),
 			notification = doc.querySelector('.notification'),
-			fadeOut = function(){fade.init(notification)};
+			fadeOut = function(){fade.init(notification);};
 
 	notification.innerHTML = 'You need to complete your TODOs first.';
 
@@ -78,7 +78,7 @@ input.addEventListener('keypress', function(e){
 	if (key == 13) {
 		addTodo();
 	}
-})
+});
 
 addBtn.addEventListener('click', addTodo, false);
 clearBtn.addEventListener('click', clearTodos, false);
